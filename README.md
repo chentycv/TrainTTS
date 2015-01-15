@@ -10,5 +10,6 @@ Feature
 
 References
 ------------
-[SQLite 笔记](https://hackpad.com/SQLite-vOapONJo3de)
-[Android TTS](http://www.tutorialspoint.com/android/android_text_to_speech.htm)
+* [SQLite 笔记](https://hackpad.com/SQLite-vOapONJo3de)
+* [Android TTS](http://www.tutorialspoint.com/android/android_text_to_speech.htm)
+* [android-serialport-api](https://code.google.com/p/android-serialport-api/)

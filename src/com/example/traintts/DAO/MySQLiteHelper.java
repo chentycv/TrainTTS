@@ -9,9 +9,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	  public static final String TABLE_VOICEMAPS = "VOICEMAPS";
 	  public static final String COLUMN_ID = "_id";
-	  public static final String COLUMN_ARG0 = "ARG0";
-	  public static final String COLUMN_ARG1 = "ARG1";
-	  public static final String COLUMN_ARG2 = "ARG2";
+	  public static final String COLUMN_SEGMENT = "SEGMENT";
+	  public static final String COLUMN_SIGNAL = "SIGNAL";
+	  public static final String COLUMN_DISTANCE = "DISTANCE";
 	  public static final String COLUMN_VOICE = "VOICE";
 
 	  private static final String DATABASE_NAME = "VOICEMAPS.db";
@@ -21,9 +21,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_CREATE = "create table "
 	      + TABLE_VOICEMAPS + "(" 
 		      + COLUMN_ID + " integer primary key autoincrement, "
-		      + COLUMN_ARG0 + " int not null, "
-		      + COLUMN_ARG1 + " int not null, "
-		      + COLUMN_ARG2 + " double not null, "
+		      + COLUMN_SEGMENT + " int not null, "
+		      + COLUMN_SIGNAL + " int not null, "
+		      + COLUMN_DISTANCE + " double not null, "
 		      + COLUMN_VOICE + " text not null" + ");";
 
 	  public MySQLiteHelper(Context context) {

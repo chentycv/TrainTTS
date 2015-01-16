@@ -1,5 +1,7 @@
 package com.example.traintts.UI;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -7,9 +9,9 @@ import java.util.Random;
 import com.example.traintts.R;
 import com.example.traintts.DAO.VoiceMap;
 import com.example.traintts.DAO.VoiceMapsDataSource;
+import com.example.traintts.utils.FileHelper;
 
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.ActionBarActivity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +31,8 @@ public class MainActivity extends ListActivity {
 	
 	private TextToSpeech TTSObject;
 	private VoiceMapsDataSource datasource;
+	
+	private FileHelper CVSHelper = new FileHelper();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,16 @@ public class MainActivity extends ListActivity {
 		// Initlizate the data source
 	    datasource = new VoiceMapsDataSource(this);
 	    datasource.open();
+	    
+	    // Save CSV file to datasource
+	    try {
+			CVSHelper.saveCVSFileToDatasource(
+					new InputStreamReader(getAssets().open("data.csv")), 
+					datasource);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    List<VoiceMap> values = datasource.getAllVoiceMaps();
 	    
 	    // use the SimpleCursorAdapter to show the

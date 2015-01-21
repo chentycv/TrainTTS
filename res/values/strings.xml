@@ -2,7 +2,19 @@
 <resources>
 
     <string name="app_name">TrainTTS</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Start">始</string>
+    <string name="End">终</string>
+    <string name="title">北京 　 一　 沈阳</string>
+    <string name="Speed">运行速度</string>
+    <string name="time">2015-1-20 12:32</string>
+    <string name="Duan">交路号</string>
+    <string name="Jie">车站号</string>
+    <string name="Location">公里标（单位：米）</string>
+    <string name="Operation">执行操作</string>
+    <string name="trainNum">T985</string>
+    <string name="DriverNum">司机号</string>
+    <string name="trainGroup">列车编组</string>
 
 </resources>

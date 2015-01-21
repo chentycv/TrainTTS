@@ -18,14 +18,24 @@ public class FileHelper {
 		for(;;) {
 			next = reader.readNext();
 			if(next != null) {
+				
 				// Not end of file
 				if (datasource.queryVoiceMapByArgs(
 						Integer.parseInt(next[0]), // SEGMENT
 						Integer.parseInt(next[1]), // SIGNAL
 						Double.parseDouble(next[2]), // DISTANCE
 						next[3])
-					== null	){
-					// Unique segment signal and distance
+					!= null	){
+					
+					// Update old record to make segment signal and distance unique
+					datasource.updateVoiceMapByArgs(
+							Integer.parseInt(next[0]), // SEGMENT
+							Integer.parseInt(next[1]), // SIGNAL
+							Double.parseDouble(next[2]), // DISTANCE
+							next[3]); // VOICE
+				} else {
+					
+					// New record so create a new row by segment signal and distance
 					datasource.createVoiceMap(
 							Integer.parseInt(next[0]), // SEGMENT
 							Integer.parseInt(next[1]), // SIGNAL

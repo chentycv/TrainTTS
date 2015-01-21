@@ -71,6 +71,22 @@ public class VoiceMapsDataSource {
 	    cursor.close();
 	    return newVoiceMap; 
 	  }
+	  
+	  public void updateVoiceMapByArgs(int segment, int signal, double distance, String voice){
+		ContentValues values = new ContentValues();
+		values.put(MySQLiteHelper.COLUMN_SEGMENT, segment);
+		values.put(MySQLiteHelper.COLUMN_SIGNAL, signal);
+		values.put(MySQLiteHelper.COLUMN_DISTANCE, distance);
+		values.put(MySQLiteHelper.COLUMN_VOICE, voice);
+		ContentValues args = new ContentValues();
+		args.put(MySQLiteHelper.COLUMN_VOICE, voice);
+	    database.update(MySQLiteHelper.TABLE_VOICEMAPS,
+	    		args, 
+		        MySQLiteHelper.COLUMN_SEGMENT + " = " + segment + " AND " + 
+		        MySQLiteHelper.COLUMN_SIGNAL + " = " + signal + " AND " + 
+		        MySQLiteHelper.COLUMN_DISTANCE + " = " + distance ,
+		        null);
+	  }
 
 	  public void deleteVoiceMap(VoiceMap voiceMap) {
 	    long id = voiceMap.getId();

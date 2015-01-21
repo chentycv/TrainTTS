@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey">
+    
+    <TableRow
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent"
+        android:background="@drawable/titlebar_center"
+	    >
+	    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="@string/Speed"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+	    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:layout_marginLeft="1.5dp"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="@string/Duan"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:layout_marginLeft="1.5dp"
+            android:singleLine="false"
+            android:text="@string/Jie"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:layout_marginLeft="1.5dp"
+            android:singleLine="false"
+            android:text="@string/Location"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+    </TableRow>
+    
+    <TableRow
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent"
+	    >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+	    	android:background="@android:color/white"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="45dp"
+            android:paddingTop="45dp"
+            android:singleLine="false"
+            android:text="213"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
+	    <TextView
+	        android:id="@+id/Duan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+	    	android:background="@android:color/white"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="45dp"
+            android:paddingTop="45dp"
+            android:layout_marginLeft="1.5dp"
+            android:singleLine="false"
+            android:text="1"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/Jie"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+	    	android:background="@android:color/white"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="45dp"
+            android:paddingTop="45dp"
+            android:layout_marginLeft="1.5dp"
+            android:singleLine="false"
+            android:text="3"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/Distance"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+	    	android:background="@android:color/white"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="45dp"
+            android:paddingTop="45dp"
+            android:layout_marginLeft="1.5dp"
+            android:singleLine="false"
+            android:text="1856"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
+    </TableRow>
+    
+    <TableRow
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+    	android:layout_marginTop="1.5dp"
+    	android:background="@drawable/titlebar_center"
+	    >
+   	    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="@string/DriverNum"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+	    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:layout_marginLeft="1.5dp"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="@string/trainGroup"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+	    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.8"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:layout_marginLeft="1.5dp"
+            android:singleLine="false"
+            android:text="@string/Operation"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+    </TableRow>
+
+</TableLayout>

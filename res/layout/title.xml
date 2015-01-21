@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/titlebar_whole"
+    android:gravity="center" >
+
+
+    
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:layout_weight="1.2"
+		     android:gravity="center"
+		     android:text="@string/trainNum"
+		     android:textColor="@android:color/white"
+		     android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	        android:layout_weight="0.1"
+	        android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:text="@string/Start"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+		    android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/title"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:background="@color/green"
+            android:text="@string/End"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+        
+        
+        <TextView
+            android:id="@+id/timedate"  
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+		    android:layout_weight="1.2"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+        <!-- <DigitalClock
+            android:id="@+id/DC"      
+            android:layout_width="wrap_content"      
+            android:layout_height="wrap_content"
+		    android:layout_weight="1.2"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"  /> -->
+        
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

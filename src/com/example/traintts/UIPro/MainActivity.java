@@ -189,6 +189,15 @@ public class MainActivity extends Activity {
 	        }
 	    });
 		MenuItem exit = menu.add(0, 2, 2, "退出");
+		exit.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+	        @Override
+	        public boolean onMenuItemClick(MenuItem item) {
+                // Display the file chooser dialog
+                System.exit(0);
+	            return true;
+	        }
+	    });
 		addData.setIcon(R.drawable.add);
 		exit.setIcon(R.drawable.exit);
 		return true;

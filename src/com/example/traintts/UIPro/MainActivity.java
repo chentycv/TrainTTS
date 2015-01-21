@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.example.TrainTTS.R;
+import com.example.traintts.R;
 import com.example.traintts.DAO.VoiceMap;
 import com.example.traintts.DAO.VoiceMapsDataSource;
 import com.example.traintts.utils.FileHelper;

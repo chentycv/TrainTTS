@@ -14,8 +14,13 @@ Train TTS
 * 实现SQLite数据接口
 * 实现Android TTS的调用
 
+项目配置
+-----------
+* 需要导入aFileChooserLib.tar.gz到Eclipse ADT
+
 参考项目
 ------------
 * [SQLite 笔记](https://hackpad.com/SQLite-vOapONJo3de)
 * [Android TTS](http://www.tutorialspoint.com/android/android_text_to_speech.htm)
 * [android-serialport-api](https://code.google.com/p/android-serialport-api/)
+* [aFileChooser](https://github.com/iPaulPro/aFileChooser)

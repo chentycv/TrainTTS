@@ -1,7 +1,9 @@
 package com.example.traintts.UIPro;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,11 +14,14 @@ import com.example.TrainTTS.R;
 import com.example.traintts.DAO.VoiceMap;
 import com.example.traintts.DAO.VoiceMapsDataSource;
 import com.example.traintts.utils.FileHelper;
+import com.ipaulpro.afilechooser.utils.FileUtils;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +30,7 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +74,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    // Serial query thread 
     private Thread serialQueryThread;
     
 	private BroadcastReceiver myReceiver = new BroadcastReceiver(){
@@ -104,6 +111,10 @@ public class MainActivity extends Activity {
     	}
     };
 
+    
+    private static final int REQUEST_CODE = 9898; // onActivityResult request
+    // code
+    
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -126,17 +137,16 @@ public class MainActivity extends Activity {
 	    datasource.open();
 	    
 	    // Save CSV file to datasource
-	    try {
-			CVSHelper.saveCVSFileToDatasource(
-					new InputStreamReader(getAssets().open("data.csv")), 
-					datasource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    List<VoiceMap> values = datasource.getAllVoiceMaps();
-
-		
+//	    try {
+//			CVSHelper.saveCVSFileToDatasource(
+//					new InputStreamReader(getAssets().open("data.csv")), 
+//					datasource);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    List<VoiceMap> values = datasource.getAllVoiceMaps();
+	    
 		// Initialize clock on the top 
 		timeDateText = (TextView)findViewById(R.id.timedate);
         Date date = new Date();
@@ -155,20 +165,24 @@ public class MainActivity extends Activity {
         // Initialize serial query thread
         serialQueryThread = getSerialQueryThread();
         serialQueryThread.start();
-        
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
 		super.onCreateOptionsMenu(menu);
-
 		MenuItem addData = menu.add(0, 1, 1, "载入数据");
+		addData.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+	        @Override
+	        public boolean onMenuItemClick(MenuItem item) {
+                // Display the file chooser dialog
+                showChooser();
+	            return true;
+	        }
+	    });
 		MenuItem exit = menu.add(0, 2, 2, "退出");
 		addData.setIcon(R.drawable.add);
 		exit.setIcon(R.drawable.exit);
-		
-		
 		return true;
 	}
 	
@@ -241,4 +255,52 @@ public class MainActivity extends Activity {
 		thread = getSerialQueryThread();
 		thread.start();
 	}
+	
+	// File chooser for the CVS file reader
+    private void showChooser() {
+        // Use the GET_CONTENT intent from the utility class
+        Intent target = FileUtils.createGetContentIntent();
+        // Create the chooser Intent
+        Intent intent = Intent.createChooser(
+                target, ("Choose a CVS file"));
+        try {
+            startActivityForResult(intent, REQUEST_CODE);
+        } catch (ActivityNotFoundException e) {
+            // The reason for the existence of aFileChooser
+        }
+    }
+    
+    // File uri for CVS reader
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE:
+                // If the file selection was successful
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
+                        // Get the URI of the selected file
+                        final Uri uri = data.getData();
+                        Log.i(TAG, "Uri = " + uri.toString());
+                        try {
+                            // Get the file path from the URI
+                            final String path = FileUtils.getPath(this, uri);
+                            Toast.makeText(MainActivity.this,
+                                    "File Selected: " + path, Toast.LENGTH_LONG).show();
+                    	    try {
+                    	    	InputStream is = new FileInputStream(path);
+                    	    	InputStreamReader reader=new InputStreamReader(is);
+                    			CVSHelper.saveCVSFileToDatasource(reader, datasource);
+                    		} catch (IOException e) {
+                    			// TODO Auto-generated catch block
+                    			e.printStackTrace();
+                    		}
+                        } catch (Exception e) {
+                            Log.e("FileSelectorTestActivity", "File select error", e);
+                        }
+                    }
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

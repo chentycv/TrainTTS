@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
 	private TextView duan;
 	private TextView jie;
 	private TextView distance;
+	private TextView operation;
 
 	// The uiHander to update duan, jie, distance
     private Handler uiHandler = new UIHandler();
@@ -70,6 +71,12 @@ public class MainActivity extends Activity {
             duan.setText(msgParts[0]);
             jie.setText(msgParts[1]);
             distance.setText(msgParts[2]);
+            if (voiceMap != null && !voiceMap.getVoice().equals("")){
+            	operation.setText(voiceMap.getVoice());
+            } else {
+            	operation.setText(NORECORD);
+            }
+            
             super.handleMessage(msg);
         }
     }
@@ -161,6 +168,7 @@ public class MainActivity extends Activity {
         duan = (TextView)findViewById(R.id.Duan);
         jie = (TextView)findViewById(R.id.Jie);
         distance = (TextView)findViewById(R.id.Distance);
+        operation = (TextView)findViewById(R.id.Operation);
         
         // Initialize serial query thread
         serialQueryThread = getSerialQueryThread();
@@ -196,7 +204,7 @@ public class MainActivity extends Activity {
 
 	// Useful method to speak a sentence
 	public void speakText(String toSpeak){
-		if (toSpeak == null) {
+		if (toSpeak == null || toSpeak.equals("")) {
 			toSpeak = NORECORD;
 		}
 		Toast.makeText(getApplicationContext(), toSpeak, 
@@ -288,7 +296,7 @@ public class MainActivity extends Activity {
                                     "File Selected: " + path, Toast.LENGTH_LONG).show();
                     	    try {
                     	    	InputStream is = new FileInputStream(path);
-                    	    	InputStreamReader reader=new InputStreamReader(is);
+                    	    	InputStreamReader reader = new InputStreamReader(is);
                     			CVSHelper.saveCVSFileToDatasource(reader, datasource);
                     		} catch (IOException e) {
                     			// TODO Auto-generated catch block

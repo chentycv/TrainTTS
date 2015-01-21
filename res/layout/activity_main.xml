@@ -8,7 +8,7 @@
     <include layout="@layout/title" />
 
     <include
-        android:layout_height="287dp"
+
         layout="@layout/table" />
 
     <LinearLayout
@@ -42,7 +42,8 @@
             android:textColor="@android:color/black"
             android:textSize="22sp" />
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/Operation"
+             android:layout_width="0dp" 
             android:layout_height="fill_parent"
             android:layout_weight="1.8"
             android:background="@android:color/white"
@@ -50,7 +51,6 @@
             android:gravity="center"
             android:singleLine="false"
             android:layout_marginLeft="1.5dp"
-            android:text="操作1"
             android:textColor="@android:color/black"
             android:textSize="22sp" />
 

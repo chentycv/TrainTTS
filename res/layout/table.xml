@@ -78,7 +78,7 @@
             android:paddingBottom="45dp"
             android:paddingTop="45dp"
             android:singleLine="false"
-            android:text="213"
+            android:text="@string/speeds"
             android:textColor="@android:color/black"
             android:textSize="22sp" />
 	    <TextView

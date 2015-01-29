@@ -2,7 +2,6 @@ package com.example.traintts.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -60,7 +59,8 @@ public class VoiceMapsDataSource {
 		        allColumns, 
 		        MySQLiteHelper.COLUMN_SEGMENT + " = " + segment + " AND " + 
 		        MySQLiteHelper.COLUMN_SIGNAL + " = " + signal + " AND " + 
-		        MySQLiteHelper.COLUMN_DISTANCE + " = " + distance ,
+		        MySQLiteHelper.COLUMN_DISTANCE + " >= " + (distance-2.5) + " AND " + 
+		        MySQLiteHelper.COLUMN_DISTANCE + " <= " + (distance+2.5),
 		        null, null, null, null);
 	    cursor.moveToFirst();
 	    VoiceMap newVoiceMap = null;

@@ -12,7 +12,7 @@ public class FileHelper {
 	public void saveCVSFileToDatasource(InputStreamReader file ,VoiceMapsDataSource datasource){
 		String next[] = {};
 		try {
-		CSVReader reader = new CSVReader(file);//Specify asset file name
+		CSVReader reader = new CSVReader(file,'\t');//Specify asset file name
 		
 		// in open();
 		for(;;) {
@@ -27,7 +27,7 @@ public class FileHelper {
 						next[3])
 					!= null	){
 					
-					// Update old record to make segment signal and distance unique
+					// Update old record to make se gment signal and distance unique
 					datasource.updateVoiceMapByArgs(
 							Integer.parseInt(next[0]), // SEGMENT
 							Integer.parseInt(next[1]), // SIGNAL

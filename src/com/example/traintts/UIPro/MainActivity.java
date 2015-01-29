@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
         			Integer.parseInt(msgParts[0]), 
         			Integer.parseInt(msgParts[1]),
         			Double.parseDouble(msgParts[2]), "");
-        	speakText(voiceMap != null ? voiceMap.getVoice() : NORECORD);
+        	speakText(voiceMap != null ? voiceMap.getVoice() : "");
             duan.setText(msgParts[0]);
             jie.setText(msgParts[1]);
             distance.setText(msgParts[2]);
@@ -155,6 +155,7 @@ public class MainActivity extends Activity {
 //	    List<VoiceMap> values = datasource.getAllVoiceMaps();
 	    
 		// Initialize clock on the top 
+	    
 		timeDateText = (TextView)findViewById(R.id.timedate);
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");    
@@ -214,10 +215,10 @@ public class MainActivity extends Activity {
 	// Useful method to speak a sentence
 	public void speakText(String toSpeak){
 		if (toSpeak == null || toSpeak.equals("")) {
-			toSpeak = NORECORD;
+//			toSpeak = NORECORD;
 		}
-		Toast.makeText(getApplicationContext(), toSpeak, 
-		Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getApplicationContext(), toSpeak, 
+//		Toast.LENGTH_SHORT).show();
 		TTSObject.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
 	}
 
@@ -243,7 +244,7 @@ public class MainActivity extends Activity {
 					       uiHandler.sendMessage(msg);
 					       mLine = reader.readLine(); 
 					       try {
-							Thread.sleep(6000);
+							Thread.sleep(1200);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();

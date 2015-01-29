@@ -45,6 +45,8 @@
             </intent-filter>
         </activity>
         
+        <activity android:name="com.example.traintts.UIPro.SerialActivity"></activity> 
+        
         <provider
             android:name="com.ianhanniballake.localstorage.LocalStorageProvider"
             android:authorities="com.ianhanniballake.localstorage.documents"

@@ -16,5 +16,18 @@
     <string name="speeds">213 km/h</string>
     <string name="DriverNum">司机号</string>
     <string name="trainGroup">列车编组</string>
-
+    
+    <string name="main2serialtitle">串口测试</string>
+	<string name="main2serialrecetext">接收区</string>
+	<string name="main2serialsendtext">发送区</string>
+	<string name="main2serialsendbutton">发送</string>
+	<string name="main2serialnumber">端口号</string>
+	<string name="main2serialbaute">波特率</string>
+	<string name="main2serialparitybit">校验位</string>
+	<string name="main2serialdatabit">数据位</string>
+	<string name="main2serialstopbit">停止位</string>
+	<string name="main2serialopenbutton">打开</string>
+	<string name="main2serialclosebutton">关闭</string>
+	<string name="main2serialclearrecebutton">清空接收</string>
+	
 </resources>

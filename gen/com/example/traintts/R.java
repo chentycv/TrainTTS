@@ -47,19 +47,37 @@ public final class R {
         public static final int titlebar_whole=0x7f02000b;
     }
     public static final class id {
-        public static final int Distance=0x7f0b0003;
-        public static final int Duan=0x7f0b0001;
-        public static final int Jie=0x7f0b0002;
+        public static final int Distance=0x7f0b0014;
+        public static final int Duan=0x7f0b0012;
+        public static final int Jie=0x7f0b0013;
         public static final int Operation=0x7f0b0000;
-        public static final int action_settings=0x7f0b0006;
-        public static final int linearLayout1=0x7f0b0004;
-        public static final int timedate=0x7f0b0005;
+        public static final int TextViewWdog=0x7f0b0001;
+        public static final int action_settings=0x7f0b0017;
+        public static final int buttonClearReceText=0x7f0b0009;
+        public static final int buttonOpen=0x7f0b0007;
+        public static final int buttonSend=0x7f0b0008;
+        public static final int editTextRece=0x7f0b0003;
+        public static final int editTextSend=0x7f0b0004;
+        public static final int linearLayout1=0x7f0b0015;
+        public static final int linearLayoutSendReceText=0x7f0b0002;
+        public static final int spinnerComNumber=0x7f0b000a;
+        public static final int spinnerbaute=0x7f0b000c;
+        public static final int spinnerdatabit=0x7f0b0010;
+        public static final int spinnerparitybit=0x7f0b000e;
+        public static final int spinnerstopbit=0x7f0b0011;
+        public static final int textViewComNumber=0x7f0b000b;
+        public static final int textViewReceIndicate=0x7f0b0005;
+        public static final int textViewSendIndicate=0x7f0b0006;
+        public static final int textViewbaute=0x7f0b000d;
+        public static final int textViewparitybit=0x7f0b000f;
+        public static final int timedate=0x7f0b0016;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int file=0x7f030001;
-        public static final int table=0x7f030002;
-        public static final int title=0x7f030003;
+        public static final int activity_serial=0x7f030001;
+        public static final int file=0x7f030002;
+        public static final int table=0x7f030003;
+        public static final int title=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -80,6 +98,18 @@ public final class R {
         public static final int error_selecting_file=0x7f070003;
         public static final int hello_world=0x7f070007;
         public static final int internal_storage=0x7f070004;
+        public static final int main2serialbaute=0x7f070019;
+        public static final int main2serialclearrecebutton=0x7f07001f;
+        public static final int main2serialclosebutton=0x7f07001e;
+        public static final int main2serialdatabit=0x7f07001b;
+        public static final int main2serialnumber=0x7f070018;
+        public static final int main2serialopenbutton=0x7f07001d;
+        public static final int main2serialparitybit=0x7f07001a;
+        public static final int main2serialrecetext=0x7f070015;
+        public static final int main2serialsendbutton=0x7f070017;
+        public static final int main2serialsendtext=0x7f070016;
+        public static final int main2serialstopbit=0x7f07001c;
+        public static final int main2serialtitle=0x7f070014;
         public static final int speeds=0x7f070011;
         public static final int storage_removed=0x7f070001;
         public static final int title=0x7f07000a;

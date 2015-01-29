@@ -189,7 +189,21 @@ public class MainActivity extends Activity {
 	            return true;
 	        }
 	    });
-		MenuItem exit = menu.add(0, 2, 2, "退出");
+		
+		MenuItem appSetting = menu.add(0, 2, 2, "设置");
+		appSetting.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+	        @Override
+	        public boolean onMenuItemClick(MenuItem item) {
+                // Display the file chooser dialog
+	        	Intent myIntent = new Intent(MainActivity.this, SerialActivity.class);
+//	        	myIntent.putExtra("key", value); //Optional parameters
+	        	MainActivity.this.startActivity(myIntent);
+	            return true;
+	        }
+	    });
+		
+		MenuItem exit = menu.add(0, 3, 3, "退出");
 		exit.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 	        @Override

@@ -1,0 +1,143 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+    
+    <TextView
+             android:id="@+id/TextViewWdog"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"             
+             android:layout_centerHorizontal="true"
+             android:textSize="30sp"
+             android:textColor="#FF00FF00"      
+             android:text="@string/main2serialtitle" />
+    
+    <LinearLayout
+         android:id="@+id/linearLayoutSendReceText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+       	 android:layout_centerInParent="true" 
+	     android:orientation="vertical" >
+    
+    <EditText
+ 	    android:id="@+id/editTextRece"
+ 	    android:layout_width="400px"
+ 	    android:layout_height="240px"
+ 	    android:ems="10"
+ 	    android:inputType="textMultiLine" >
+
+ 	    <requestFocus />
+ 	</EditText>
+     <EditText
+ 	    android:id="@+id/editTextSend"
+ 	    android:layout_width="400px"
+ 	    android:layout_height="150px"
+ 	    android:ems="10"
+ 	    android:inputType="textMultiLine" >
+
+ 	    <requestFocus />
+ 	</EditText>   
+
+</LinearLayout>
+<TextView
+            android:id="@+id/textViewReceIndicate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/linearLayoutSendReceText"
+            android:layout_alignTop="@+id/linearLayoutSendReceText"
+            android:text="@string/main2serialrecetext" />
+<TextView
+            android:id="@+id/textViewSendIndicate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/linearLayoutSendReceText"
+            android:layout_alignBottom="@+id/linearLayoutSendReceText"
+            android:text="@string/main2serialsendtext" />
+<Button
+         android:id="@+id/buttonOpen"
+         android:layout_width="120px"
+         android:layout_height="75px"        
+         android:layout_above="@+id/buttonSend"
+         android:layout_alignLeft="@+id/buttonSend"
+         android:text="@string/main2serialopenbutton" />
+<Button
+         android:id="@+id/buttonSend"
+         android:layout_width="120px"
+         android:layout_height="75px"        
+         android:layout_toLeftOf="@+id/linearLayoutSendReceText"
+         android:layout_alignBottom="@+id/linearLayoutSendReceText"
+         android:text="@string/main2serialsendbutton" />
+
+<Button
+         android:id="@+id/buttonClearReceText"
+         android:layout_width="120px"
+         android:layout_height="75px"        
+         android:layout_toRightOf="@+id/linearLayoutSendReceText"
+         android:layout_centerVertical="true"
+         android:text="@string/main2serialclearrecebutton" />
+    <Spinner
+        android:id="@+id/spinnerComNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignTop="@+id/linearLayoutSendReceText"     
+        android:layout_toLeftOf="@+id/linearLayoutSendReceText"/>
+    <TextView
+            android:id="@+id/textViewComNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_toLeftOf="@+id/spinnerComNumber"
+            android:layout_alignTop="@+id/spinnerComNumber"
+            android:text="@string/main2serialnumber" />
+     <Spinner
+        android:id="@+id/spinnerbaute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignLeft="@+id/spinnerComNumber"     
+        android:layout_below="@+id/spinnerComNumber"/>
+      <TextView
+            android:id="@+id/textViewbaute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_toLeftOf="@+id/spinnerbaute"
+            android:layout_alignTop="@+id/spinnerbaute"
+            android:text="@string/main2serialbaute" />
+      <Spinner
+        android:id="@+id/spinnerparitybit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignLeft="@+id/spinnerbaute"     
+        android:layout_below="@+id/spinnerbaute"/>
+      <TextView
+            android:id="@+id/textViewparitybit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_toLeftOf="@+id/spinnerparitybit"
+            android:layout_alignTop="@+id/spinnerparitybit"
+            android:text="@string/main2serialparitybit" />
+       <Spinner
+        android:id="@+id/spinnerdatabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignLeft="@+id/spinnerparitybit"     
+        android:layout_below="@+id/spinnerparitybit"/>
+
+        <Spinner
+        android:id="@+id/spinnerstopbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignLeft="@+id/spinnerdatabit"     
+        android:layout_below="@+id/spinnerdatabit"/>
+
+
+
+</RelativeLayout>

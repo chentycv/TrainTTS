@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.example.traintts.R;
-import com.example.traintts.utils.YcApi;
+import com.ychmi.sdk.YcApi;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

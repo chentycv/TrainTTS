@@ -13,11 +13,13 @@ import java.util.Locale;
 import com.example.traintts.R;
 import com.example.traintts.DAO.VoiceMap;
 import com.example.traintts.DAO.VoiceMapsDataSource;
+import com.example.traintts.media.RecMicToMp3;
 import com.example.traintts.utils.FileHelper;
 import com.ipaulpro.afilechooser.utils.FileUtils;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
@@ -36,26 +38,56 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	// TTS objects
+	/*
+	 * A tag to filter logs in logcat
+	 */
+	String TAG = "TrainTTSMainActivity";
+	
+	/*
+	 *  TTS objects to store the entity of TTS engine 
+	 *  Voice map data source is map from "duan" "jie" "distance" to a "sentence"
+	 */
 	private TextToSpeech TTSObject;
 	private VoiceMapsDataSource datasource;
 	private final String NORECORD = "没有记录";
 	
-	// CVS file reader
+	/*
+	 *  CVS file reader
+	 */
 	private FileHelper CVSHelper = new FileHelper();
 	
-	// Variables for Clock on the top
+	/*
+	 *  Variables for Clock on the top
+	 *  A textview to display time
+	 */
 	TextView timeDateText;
-	String TAG = "TimeDate";
 	String UPDATE = "updateTime";
 
-	// TextViews objects
+	private BroadcastReceiver myReceiver = new BroadcastReceiver(){
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+			if(intent.getAction().equals(UPDATE))
+			{
+		        Date date = new Date();
+		        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");    
+		        timeDateText.setText(dateFormat.format(date));
+			}
+		}    	
+	};
+	
+	/*
+	 *  TextViews objects for duan jie distance operation
+	 */
 	private TextView duan;
 	private TextView jie;
 	private TextView distance;
 	private TextView operation;
 
-	// The uiHander to update duan, jie, distance
+	/*
+	 *  The uiHander to update duan, jie, distance
+	 */
     private Handler uiHandler = new UIHandler();
 
     class UIHandler extends Handler {
@@ -81,24 +113,15 @@ public class MainActivity extends Activity {
         }
     }
 
-    // Serial query thread 
+    /*
+     *  Serial query thread 
+     */
     private Thread serialQueryThread;
+
     
-	private BroadcastReceiver myReceiver = new BroadcastReceiver(){
-	
-		@Override
-		public void onReceive(Context context, Intent intent) {
-		// TODO Auto-generated method stub
-			if(intent.getAction().equals(UPDATE))
-			{
-//				Log.d(TAG, "receive update time message");
-		        Date date = new Date();
-		        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");    
-		        timeDateText.setText(dateFormat.format(date));
-			}
-		}    	
-	};
-	
+    /*
+     * Test unit to emulate the serial signal to query
+     */
     private Thread myThread = new Thread(){
     	public void run()
     	{
@@ -118,10 +141,19 @@ public class MainActivity extends Activity {
     	}
     };
 
+    /*
+     * A Request code for file chooser to identity the result that the file chooser activity returned
+     */
+    private static final int REQUEST_CODE = 9898; // onActivityResult request code
     
-    private static final int REQUEST_CODE = 9898; // onActivityResult request
-    // code
     
+    
+	/*
+	 *  The object to record mic input to the /sdcard/mezzo.mp3 with 8000hz sample rate
+	 */
+	private RecMicToMp3 mRecMicToMp3 = new RecMicToMp3(
+			Environment.getExternalStorageDirectory() + "/mezzo.mp3", 8000);
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +187,6 @@ public class MainActivity extends Activity {
 //	    List<VoiceMap> values = datasource.getAllVoiceMaps();
 	    
 		// Initialize clock on the top 
-	    
 		timeDateText = (TextView)findViewById(R.id.timedate);
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");    
@@ -165,7 +196,7 @@ public class MainActivity extends Activity {
         this.registerReceiver(myReceiver, intentFilter);
         myThread.start();
         
-        // Initialize textviews
+        // Initialize textviews of duan jie distance operation
         duan = (TextView)findViewById(R.id.Duan);
         jie = (TextView)findViewById(R.id.Jie);
         distance = (TextView)findViewById(R.id.Distance);
@@ -174,6 +205,59 @@ public class MainActivity extends Activity {
         // Initialize serial query thread
         serialQueryThread = getSerialQueryThread();
         serialQueryThread.start();
+        
+        // Binder the handler to record thread 
+        mRecMicToMp3.setHandle(new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				switch (msg.what) {
+				case RecMicToMp3.MSG_REC_STARTED:
+//					statusTextView.setText("録音中");
+					break;
+				case RecMicToMp3.MSG_REC_STOPPED:
+//					statusTextView.setText("");
+					break;
+				case RecMicToMp3.MSG_ERROR_GET_MIN_BUFFERSIZE:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this,
+							"録音が開始できませんでした。この端末が録音をサポートしていない可能性があります。",
+							Toast.LENGTH_LONG).show();
+					break;
+				case RecMicToMp3.MSG_ERROR_CREATE_FILE:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this, "ファイルが生成できませんでした",
+							Toast.LENGTH_LONG).show();
+					break;
+				case RecMicToMp3.MSG_ERROR_REC_START:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this, "録音が開始できませんでした",
+							Toast.LENGTH_LONG).show();
+					break;
+				case RecMicToMp3.MSG_ERROR_AUDIO_RECORD:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this, "録音ができませんでした",
+							Toast.LENGTH_LONG).show();
+					break;
+				case RecMicToMp3.MSG_ERROR_AUDIO_ENCODE:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this, "エンコードに失敗しました",
+							Toast.LENGTH_LONG).show();
+					break;
+				case RecMicToMp3.MSG_ERROR_WRITE_FILE:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this, "ファイルの書き込みに失敗しました",
+							Toast.LENGTH_LONG).show();
+					break;
+				case RecMicToMp3.MSG_ERROR_CLOSE_FILE:
+//					statusTextView.setText("");
+					Toast.makeText(MainActivity.this, "ファイルの書き込みに失敗しました",
+							Toast.LENGTH_LONG).show();
+					break;
+				default:
+					break;
+				}
+			}
+		});
 	}
 
 	@Override
@@ -202,8 +286,28 @@ public class MainActivity extends Activity {
 	            return true;
 	        }
 	    });
+	
+		MenuItem recordStart = menu.add(0, 3, 3, "开始录音");
+		recordStart.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+	        @Override
+	        public boolean onMenuItemClick(MenuItem item) {
+	        	mRecMicToMp3.start();
+	            return true;
+	        }
+	    });
+
+		MenuItem recordStop = menu.add(0, 4, 4, "停止录音");
+		recordStop.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+	        @Override
+	        public boolean onMenuItemClick(MenuItem item) {
+	        	mRecMicToMp3.stop();
+	            return true;
+	        }
+	    });
 		
-		MenuItem exit = menu.add(0, 3, 3, "退出");
+		MenuItem exit = menu.add(0, 5, 5, "退出");
 		exit.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 	        @Override
@@ -226,7 +330,9 @@ public class MainActivity extends Activity {
 	}
 
 
-	// Useful method to speak a sentence
+	/*
+	 *  Useful method to speak a sentence
+	 */
 	public void speakText(String toSpeak){
 		if (toSpeak == null || toSpeak.equals("")) {
 //			toSpeak = NORECORD;
@@ -236,7 +342,9 @@ public class MainActivity extends Activity {
 		TTSObject.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
 	}
 
-	// Serial query thread methods to create and restart the thread
+	/*
+	 *  Serial query thread methods to create and restart the thread
+	 */
 	private Thread getSerialQueryThread(){
 		 return new Thread() {
 			public void run() {
@@ -280,7 +388,9 @@ public class MainActivity extends Activity {
 		};
 	}
 	
-	// Universe method to restart any thread
+	/*
+	 *  Universe method to restart any thread
+	 */
 	private void restartThread(Thread thread){
 		thread.interrupt();
 		thread = null;
@@ -288,7 +398,9 @@ public class MainActivity extends Activity {
 		thread.start();
 	}
 	
-	// File chooser for the CVS file reader
+	/*
+	 *  File chooser for the CVS file reader
+	 */
     private void showChooser() {
         // Use the GET_CONTENT intent from the utility class
         Intent target = FileUtils.createGetContentIntent();
@@ -302,7 +414,9 @@ public class MainActivity extends Activity {
         }
     }
     
-    // File uri for CVS reader
+    /*
+     *  File uri for CVS reader
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {

@@ -59,8 +59,8 @@ public class VoiceMapsDataSource {
 		        allColumns, 
 		        MySQLiteHelper.COLUMN_SEGMENT + " = " + segment + " AND " + 
 		        MySQLiteHelper.COLUMN_SIGNAL + " = " + signal + " AND " + 
-		        MySQLiteHelper.COLUMN_DISTANCE + " >= " + (distance-2.5) + " AND " + 
-		        MySQLiteHelper.COLUMN_DISTANCE + " <= " + (distance+2.5),
+		        MySQLiteHelper.COLUMN_DISTANCE + " >= " + (distance-2) + " AND " + 
+		        MySQLiteHelper.COLUMN_DISTANCE + " <= " + (distance+2),
 		        null, null, null, null);
 	    cursor.moveToFirst();
 	    VoiceMap newVoiceMap = null;

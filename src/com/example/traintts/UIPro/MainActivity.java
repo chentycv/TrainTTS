@@ -366,7 +366,7 @@ public class MainActivity extends Activity {
 					       uiHandler.sendMessage(msg);
 					       mLine = reader.readLine(); 
 					       try {
-							Thread.sleep(1200);
+							Thread.sleep(12000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
